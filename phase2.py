@@ -2,7 +2,7 @@ import sqlite3
 
 class phase2:
     conn = None 
-    dbpath = "restauraunt.db"
+    dbpath = "restaurant.db"
 
     def __init__(self):
         print('connecting to ' + self.dbpath + ' ...')
@@ -88,11 +88,87 @@ class phase2:
         pass
 
     def function1(self):
+        # Creates Table CUSTOMER
+        self.conn.execute('''CREATE TABLE CUSTOMERS
+                     (c_name         TEXT     NOT NULL,
+                      c_custkey      DECIMAL(12,0) NOT NULL) ;''')
+        print("Table CUSTOMER created")
         pass
 
+    def function2(self):
+        # Creates Table ORDER
+        self.conn.execute('''CREATE TABLE ORDER
+                     (o_custkey     DECIMAL NOT NULL,
+                      o_orderkey    DECIMAL NOT NULL,
+                      o_total       DECIMAL(8,2) NOT NULL,
+                      o_date        DATE NOT NULL,
+                      o_status      CHAR(1) NOT NULL,
+                      o_employeekey DECIMAL(12,0) NOT NULL) ;''')
+
+        print(" Order Table created successfully")
+        pass
+
+    def function3(self):
+        # Creates Table EMPLOYEE
+        self.conn.execute('''CREATE TABLE EMPLOYEE
+                     (e_name        TEXT     NOT NULL,
+                      e_employeekey DECIMAL(12,0) NOT NULL,
+                      e_position    CHAR(20) NOT NULL,
+                      e_pay         DECIMAL(8,2) NOT NULL);''')
+
+        print(" Employee Table created successfully")
+        pass
+
+    def function4(self):
+        # Creates Table ORDERITEM
+        self.conn.execute('''CREATE TABLE ORDERITEM
+                     (oi_name       TEXT     NOT NULL,
+                      oi_orderkey   DECIMAL(12,0) NOT NULL,
+                      oi_itemkey    DECIMAL(12,0) NOT NULL);''')
+
+        print(" Orderitem Table created successfully")
+        pass
+
+    def function5(self):
+        # Creates Table MENU
+        self.conn.execute('''CREATE TABLE MENU
+                     (m_ingredients TEXT     NOT NULL,
+                      m_itemkey     DECIMAL(12,0) NOT NULL,
+                      m_price       DECIMAL(8,2) NOT NULL,
+                      m_name        CHAR(20) NOT NULL);''')
+
+        print("Menu Table created successfully")
+        pass
+
+    def function6(self):
+        # Creates Table INGREDIENT
+        self.conn.execute('''CREATE TABLE INGREDIENT
+                     (l_name        TEXT     NOT NULL,
+                      l_stock       DECIMAL NOT NULL,
+                      l_price       DECIMAL(8,2) NOT NULL,
+                      l_vendorkey   DECIMAL(12,0) NOT NULL);''')
+
+        print("Ingredient Table created successfully")
+        pass
+
+    def function7(self):
+
+        pass
+
+    def function8(self):
+
+        pass
+
+    def function9(self):
+
+        pass
+
+    def function10(self):
+
+        pass
 
     def help(self):
-        print("'1' for user login test\n"
+        print("'1' create table customer\n"
               "'2'\n"
               "'3'\n"
               "'4'\n"
@@ -115,5 +191,6 @@ class phase2:
               "'h' to display this message"
               )
         pass
+
 
 phase2()

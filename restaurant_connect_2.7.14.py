@@ -61,14 +61,6 @@ conn.execute('''CREATE TABLE INGREDIENT
 
 print " Ingredient Table created successfully"
 
-#Creates Table INGREDIENT
-conn.execute('''CREATE TABLE INGREDIENT
-             (l_name        TEXT     NOT NULL,
-              l_stock       DECIMAL NOT NULL,
-              l_price       DECIMAL(8,2) NOT NULL,
-              l_vendorkey   DECIMAL(12,0) NOT NULL);''')
-
-print " Ingredient Table created successfully"
 
 #Adds Data To Tables
 
