@@ -152,7 +152,26 @@ class phase2:
         pass
 
     def new_user(self):
+        new_username = input("Enter new username: ")
+
+        name_check_query = self.conn.execute("SELECT e_username "
+                                             "FROM EMPLOYEES "
+                                             "WHERE e_username = '" + new_username + "';")
+        for row in name_check_query:
+            if row[0] is not None:
+                print("Username taken")
+                pass
+            else:
+                return
+
         pass
+
+        real_name = input("Enter real name: ")
+        position = input("Enter position")
+        wage = input("Enter wage")
+        e_key = 0
+        self.conn.execute("INSERT into EMPLOYEES "
+                          "VALUES ")
 
     def menu(self):
         user_input = None
@@ -233,12 +252,12 @@ class phase2:
         print("'1' login as user\n"
               "'2' reset user password\n"
               "'3' make new user\n"
-              "'4' create order table\n"
-              "'5' create employee table\n"
-              "'6' create order item table\n"
-              "'7' create menu table\n"
-              "'8' create ingredient table\n"
-              "'9' create customer table"
+              "'4' create customer table\n"
+              "'5' create order table\n"
+              "'6' create employee  table\n"
+              "'7' create order item table\n"
+              "'8' create menu table\n"
+              "'9' create ingredient table\n"
               "'10'\n"
               "'11'\n"
               "'12'\n"
