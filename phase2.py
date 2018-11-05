@@ -1,7 +1,7 @@
 import sqlite3
 
 class phase2:
-    self.conn = None
+    conn = None
     dbpath = "restaurant.db"
     current_user = None
     user_group = None
@@ -14,85 +14,87 @@ class phase2:
         pass
 
     def create_table_customer(self):
-        # Creates Table CUSTOMER
-        self.conn.execute('''CREATE TABLE customer
-                     (c_name         TEXT     NOT NULL,
-                      c_custkey      DECIMAL(12,0) NOT NULL) ;''')
-        print("Table CUSTOMER created")
+        # Creates Table customer
+        try:
+            self.conn.execute('''CREATE TABLE customer
+                         (c_name         TEXT     NOT NULL,
+                          c_custkey      DECIMAL(12,0) NOT NULL) ;''')
+            print("Table customer created")
+        except sqlite3.OperationalError:
+            print("Table already exists")
         pass
 
     def create_table_order(self):
-        # Creates Table ORDER
-        self.conn.execute('''CREATE TABLE ORDER
-                     (o_custkey     DECIMAL NOT NULL,
-                      o_orderkey    DECIMAL NOT NULL,
-                      o_total       DECIMAL(8,2) NOT NULL,
-                      o_date        DATE NOT NULL,
-                      o_status      CHAR(1) NOT NULL,
-                      o_employeekey DECIMAL(12,0) NOT NULL) ;''')
+        # Creates Table orders
+        try:
+            self.conn.execute('''CREATE TABLE orders 
+                         (o_custkey     DECIMAL NOT NULL, 
+                          o_orderkey    DECIMAL NOT NULL, 
+                          o_total       DECIMAL(8,2) NOT NULL, 
+                          o_date        DATE NOT NULL, 
+                          o_status      CHAR(1) NOT NULL, 
+                          o_employeekey DECIMAL(12,0) NOT NULL);''')
 
-        print(" Order Table created successfully")
+            print("orders Table created successfully")
+        except sqlite3.OperationalError:
+            print("table already exists")
         pass
 
     def create_table_employee(self):
         # Creates Table employee
-        self.conn.execute('''CREATE TABLE employee
-                     (e_name        TEXT     NOT NULL,
-                      e_employeekey DECIMAL(12,0) NOT NULL,
-                      e_position    CHAR(20) NOT NULL,
-                      e_pay         DECIMAL(8,2) NOT NULL,
-                      e_username    VARCHAR(20) NOT NULL,
-                      e_password    VARCHAR(20) NOT NULL);''')
+        try:
+            self.conn.execute('''CREATE TABLE employee
+                         (e_name        TEXT     NOT NULL,
+                          e_employeekey DECIMAL(12,0) NOT NULL,
+                          e_position    CHAR(20) NOT NULL,
+                          e_wage         DECIMAL(8,2) NOT NULL,
+                          e_username    VARCHAR(20) NOT NULL,
+                          e_password    VARCHAR(20) NOT NULL);''')
 
-        print(" employee Table created successfully")
+            print(" employee Table created successfully")
+        except sqlite3.OperationalError:
+            print("table already exists")
         pass
 
     def create_table_orderitem(self):
         # Creates Table ORDERITEM
-        self.conn.execute('''CREATE TABLE ORDERITEM
-                     (oi_name       TEXT     NOT NULL,
-                      oi_orderkey   DECIMAL(12,0) NOT NULL,
-                      oi_itemkey    DECIMAL(12,0) NOT NULL);''')
+        try:
+            self.conn.execute('''CREATE TABLE orderitem
+                         (oi_name       TEXT     NOT NULL,
+                          oi_orderkey   DECIMAL(12,0) NOT NULL,
+                          oi_itemkey    DECIMAL(12,0) NOT NULL);''')
 
-        print(" Orderitem Table created successfully")
+            print(" Orderitem Table created successfully")
+        except sqlite3.OperationalError:
+            print("table already exists")
         pass
 
     def create_table_menu(self):
-        # Creates Table MENU
-        self.conn.execute('''CREATE TABLE MENU
-                     (m_ingredients TEXT     NOT NULL,
-                      m_itemkey     DECIMAL(12,0) NOT NULL,
-                      m_price       DECIMAL(8,2) NOT NULL,
-                      m_name        CHAR(20) NOT NULL);''')
+        # Creates Table menu
+        try:
+            self.conn.execute('''CREATE TABLE menu
+                         (m_ingredients TEXT     NOT NULL,
+                          m_itemkey     DECIMAL(12,0) NOT NULL,
+                          m_price       DECIMAL(8,2) NOT NULL,
+                          m_name        CHAR(20) NOT NULL);''')
 
-        print("Menu Table created successfully")
+            print("Menu Table created successfully")
+        except sqlite3.OperationalError:
+            print("table already exists")
         pass
 
     def create_table_ingredient(self):
-        # Creates Table INGREDIENT
-        self.conn.execute('''CREATE TABLE INGREDIENT
-                     (l_name        TEXT     NOT NULL,
-                      l_stock       DECIMAL NOT NULL,
-                      l_price       DECIMAL(8,2) NOT NULL,
-                      l_vendorkey   DECIMAL(12,0) NOT NULL);''')
+        # Creates Table ingredient
+        try:
+            self.conn.execute('''CREATE TABLE ingredient
+                         (l_name        TEXT     NOT NULL,
+                          l_stock       DECIMAL NOT NULL,
+                          l_price       DECIMAL(8,2) NOT NULL,
+                          l_vendorkey   DECIMAL(12,0) NOT NULL);''')
 
-        print("Ingredient Table created successfully")
-        pass
-
-    def function7(self):
-
-        pass
-
-    def function8(self):
-
-        pass
-
-    def function9(self):
-
-        pass
-
-    def function10(self):
-
+            print("Ingredient Table created successfully")
+        except sqlite3.OperationalError:
+            print("table already exists")
         pass
 
     def login(self):
@@ -142,10 +144,11 @@ class phase2:
             while True:
                 new_pw = input("Enter new password ")
                 new_pw_confirm = input("Enter new password again: ")
-                print("UPDATE employee SET e_password = '" + new_pw + "' WHERE e_username = '" + actual_username + "';")
+
                 if new_pw == new_pw_confirm:
                     self.conn.execute("UPDATE employee SET e_password = '" + new_pw + "' WHERE e_username = '" + actual_username + "';")
                     self.conn.commit()
+                    print("password changed")
                     break
                 else:
                     print("Passwords do not match, try again")
@@ -164,88 +167,90 @@ class phase2:
         for row in name_check_query:
             if row[0] is not None:
                 print("Username taken")
-                pass
-            else:
                 return
 
+        new_pw = input("Enter password: ")
         pass
         real_name = input("Enter real name: ")
-        position = input("Enter position")
-        wage = input("Enter wage")
+        position = input("Enter position: ")
+        wage = input("Enter wage: ")
         e_key = 0
         ecount_query = self.conn.execute("SELECT COUNT(*) "
                                          "FROM employee;")
         for row in ecount_query:
             e_key = row[0] + 1
-        self.conn.execute("INSERT into employee "
-                          "VALUES ")
+
+        self.conn.execute('''INSERT into employee 
+                          VALUES (?,?,?,?,?,?)''',
+                          (real_name,e_key,position,wage,new_username,new_pw))
+        self.conn.commit()
 
     def insert_data(self):
-        y = input("Please enter the table you want to add to: ")
+        y = input('''Please enter the table you want to add to: 
+'1' for customer
+'2' for orders
+'3' for orderitem
+'4' for menu
+''')
+        try:
+            if y == '1':  # for Customer Table
+                name = input("Name: ")
+                custkey = input("Customer Key : ")
+                sql = '''INSERT INTO customer (c_name, c_custkey) VALUES(%s, %s)'''
+                values = (name, custkey)
+                self.conn.execute(sql, values)
+                self.conn.commit()
 
-        if y == 1:  # for Customer Table
-            name = input("Name: ")
-            custkey = input("Customer Key : ")
-            sql = '''INSERT INTO CUSTOMER (c_name, c_custkey) VALUES(%s, %s)'''
-            values = (name, custkey)
-            self.conn.execute(sql, values)
-            self.conn.commit()
+            elif y == '2':  # for Order Table
+                custKey = input("Customer Key: ")
+                orderKey = input("Order Key: ")
+                orderPrice = input("Total Price: ")
+                date = input("DATE (Format MM-DD-YYYY): ")
+                status = input("Status (Type in F or O): ")
+                employeeKey = input("Employee Key: ")
+                sql = '''INSERT INTO orders (o_custkey, o_orderkey, o_total, o_date, o_status, o_employeekey VALUES(%s, %s, %s, %s, %s, %s)'''
+                values = (custKey, orderKey, orderPrice, date, status, employeeKey)
+                self.conn.execute(sql, values)
+                self.conn.commit()
 
-        elif y == 2:  # for Order Table
-            custKey = input("Customer Key: ")
-            orderKey = input("Order Key: ")
-            orderPrice = input("Total Price: ")
-            date = input("DATE (Format MM-DD-YYYY): ")
-            status = input("Status (Type in F or O): ")
-            employeeKey = input("Employee Key: ")
-            sql = '''INSERT INTO ORDER (o_custkey, o_orderkey, o_total, o_date, o_status, o_employeekey VALUES(%s, %s, %s, %s, %s, %s)'''
-            values = (custKey, orderKey, orderPrice, date, status, employeeKey)
-            self.conn.execute(sql, values)
-            self.conn.commit()
+            elif y == '3':  # for OrderItem
+                itemName = input("Item Name: ")
+                orderKey = input("Order Key: ")
+                itemKey = input("Item Key: ")
 
-        elif y == 3:  # for Employee
-            employeeName = input("Employee Name: ")
-            employeeKey = input("Employee Key: ")
-            position = input("Position: ")
-            wage = input("Wage: ")
+                sql = '''INSERT INTO orderitem (oi_name, oi_orderkey, oi_itemkey) VALUES(%s, %s, %s)'''
+                values = (itemName, orderKey, itemKey)
+                self.conn.execute(sql, values)
+                self.conn.commit()
 
-            sql = '''INSERT INTO EMPLOYEE (e_name, e_employeekey, e_position, e_wage) VALUES(%s, %s, %s, %s)'''
-            values = (employeeName, employeeKey, position, wage)
-            self.conn.execute(sql, values)
-            self.conn.commit()
-
-        elif y == 4:  # for OrderItem
-            itemName = input("Item Name: ")
-            orderKey = input("Order Key: ")
-            itemKey = input("Item Key: ")
-
-            sql = '''INSERT INTO EMPLOYEE (oi_name, oi_orderkey, oi_itemkey) VALUES(%s, %s, %s)'''
-            values = (itemName, orderKey, itemKey)
-            self.conn.execute(sql, values)
-            self.conn.commit()
-
-        elif y == 5:  # for Menu
-            ingredient = input("Ingredient: ")
-            itemKey = input("Item Key: ")
-            foodPrice = input("Food Price: ")
-            name = input("Name: ")
-            sql = '''INSERT INTO MENU (m_ingredients, m_itemkey, m_price, m_name) VALUES(%s, %s, %s, %s)'''
-            values = (ingredient, itemKey, foodPrice, name)
-            self.conn.execute(sql, values)
-            self.conn.commit()
+            elif y == '4':  # for Menu
+                ingredient = input("Ingredient: ")
+                itemKey = input("Item Key: ")
+                foodPrice = input("Food Price: ")
+                name = input("Name: ")
+                sql = '''INSERT INTO menu (m_ingredients, m_itemkey, m_price, m_name) VALUES(%s, %s, %s, %s)'''
+                values = (ingredient, itemKey, foodPrice, name)
+                self.conn.execute(sql, values)
+                self.conn.commit()
+                pass
+        except sqlite3.OperationalError:
+            print("invalid values")
+        pass
 
     def incomplete_orders(self):
         # view all current(incomplete) order, if none please state so.
-        sql = "SELECT o_orderkey, o_date FROM ORDER WHERE o_status = 'O' AND o_date = (SELECT CURDATE(o_date) FROM orders)"
+        sql = "SELECT o_orderkey, o_date FROM orders WHERE o_status = 'O'"
         result = self.conn.execute(sql)
+        print("incomplete orders: ")
         for row in result:
-            print(row[0])
+            print("order# " + str(row[0]))
             pass
         pass
 
     def todays_orders(self):
         # print out all orders for the current day
-        sql = "SELECT o_orderkey FROM ORDER WHERE o_date = (SELECT CURDATE(o_date) FROM orders)"
+        userinput = input("Enter mm-dd-yyyy")
+        sql = "SELECT o_orderkey FROM orders WHERE o_date = (SELECT CURDATE(o_date) FROM orders)"
         self.conn.execute(sql)
         for row in sql:
             print(row[0])
@@ -255,7 +260,7 @@ class phase2:
     def num_specific_customer_orders(self):
         # check how many times a certain customer ordered
         custkey = input("type in the customer key: ")
-        sql = ("SELECT COUNT(o_orderkey) FROM ORDER WHERE o_custkey = " + custkey)
+        sql = ("SELECT COUNT(o_orderkey) FROM orders WHERE o_custkey = " + custkey)
         result = self.conn.execute(sql)
         for row in result:
             print(row[0])
@@ -290,7 +295,7 @@ class phase2:
         year = input("Please enter the Year(Format YYYY): ")
 
         sql = ("SELECT SUM(o_total) " +
-               "FROM ORDER " +
+               "FROM orders " +
                "WHERE o_date LIKE '" + year + "-" + month + "-__'")
 
         result = self.conn.execute(sql)
@@ -333,25 +338,25 @@ class phase2:
                 self.create_table_ingredient()
                 pass
             if user_input == '10':
-                #self.function10()
+                self.insert_data()
                 pass
             if user_input == '11':
-                #self.function11()
+
                 pass
             if user_input == '12':
-                #self.function12()
+                self.incomplete_orders()
                 pass
             if user_input == '13':
-                #self.function13()
+                self.todays_orders()
                 pass
             if user_input == '14':
-                #self.function14()
+                self.num_specific_customer_orders()
                 pass
             if user_input == '15':
-                #self.function15()
+                self.find_zero_quantity()
                 pass
             if user_input == '16':
-                #self.function16()
+                self.employee_orders()
                 pass
             if user_input == '17':
                 self.gross_month_profit()
@@ -385,17 +390,18 @@ class phase2:
               "'7' create order item table\n"
               "'8' create menu table\n"
               "'9' create ingredient table\n"
-              "'10' insert new orders\n"
-              "'11' insert new menu item\n"
+              "'10' insert new data\n"
+              "'11'\n"
               "'12' view all incomplete orders\n"
               "'13' view all orders on date mm-dd-yyyu\n"
               "'14' Check how many times a certain customer ordered\n"
-              "'15' Print out a list of all ingredients that have 0 quantity\n"
-              "'16' Print out all orders handled by a certain employee\n"
-              "'17' output gross profit for a month / year\n"
+              "'15' Print ingredients of 0 quantity\n"
+              "'16' Print orders handled by certain employee\n"
+              "'17' output gross profit for month / year\n"
               "'18' calculate expenses in employee wages\n"
               "'19' calculate number of distinct customer for a month\n"
-              "'20'\n"
+              "'20' ?\n"
+              "'e' to exit\n"
               "'h' to display this message"
               )
         pass
