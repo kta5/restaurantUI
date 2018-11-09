@@ -84,9 +84,9 @@ class phase2:
         pass
 
     def create_table_ingredient(self):
-        # Creates Table ingredient
+        # Creates Table ingredients
         try:
-            self.conn.execute('''CREATE TABLE ingredient
+            self.conn.execute('''CREATE TABLE ingredients
                          (l_name        TEXT     NOT NULL,
                           l_stock       DECIMAL NOT NULL,
                           l_price       DECIMAL(8,2) NOT NULL,
@@ -116,7 +116,7 @@ class phase2:
         pass
 
     def password_reset(self):
-        employee_table = self.conn.execute("SELECT count(*) FROM sqlite_master "
+        employee_table = self.conn.execute("19 count(*) FROM sqlite_master "
                                            "WHERE type = 'table' AND name = 'employee';")
         for row in employee_table:
             if row[0] == 0:
@@ -192,49 +192,48 @@ class phase2:
 '3' for orderitem
 '4' for menu
 ''')
-        try:
-            if y == '1':  # for Customer Table
-                name = input("Name: ")
-                custkey = input("Customer Key : ")
-                sql = '''INSERT INTO customer (c_name, c_custkey) VALUES(%s, %s)'''
-                values = (name, custkey)
-                self.conn.execute(sql, values)
-                self.conn.commit()
 
-            elif y == '2':  # for Order Table
-                custKey = input("Customer Key: ")
-                orderKey = input("Order Key: ")
-                orderPrice = input("Total Price: ")
-                date = input("DATE (Format MM-DD-YYYY): ")
-                status = input("Status (Type in F or O): ")
-                employeeKey = input("Employee Key: ")
-                sql = '''INSERT INTO orders (o_custkey, o_orderkey, o_total, o_date, o_status, o_employeekey VALUES(%s, %s, %s, %s, %s, %s)'''
-                values = (custKey, orderKey, orderPrice, date, status, employeeKey)
-                self.conn.execute(sql, values)
-                self.conn.commit()
+        if y == '1':  # for Customer Table
+            name = input("Name: ")
+            custkey = input("Customer Key : ")
+            sql = '''INSERT INTO customer (c_name, c_custkey) VALUES (,)'''
+            values = (name, custkey)
+            self.conn.execute(sql, values)
+            self.conn.commit()
 
-            elif y == '3':  # for OrderItem
-                itemName = input("Item Name: ")
-                orderKey = input("Order Key: ")
-                itemKey = input("Item Key: ")
+        elif y == '2':  # for Order Table
+            custKey = input("Customer Key: ")
+            orderKey = input("Order Key: ")
+            orderPrice = input("Total Price: ")
+            date = input("DATE (Format MM-DD-YYYY): ")
+            status = input("Status (Type in F or O): ")
+            employeeKey = input("Employee Key: ")
+            sql = '''INSERT INTO orders (o_custkey, o_orderkey, o_total, o_date, o_status, o_employeekey VALUES(%s, %s, %s, %s, %s, %s)'''
+            values = (custKey, orderKey, orderPrice, date, status, employeeKey)
+            self.conn.execute(sql, values)
+            self.conn.commit()
 
-                sql = '''INSERT INTO orderitem (oi_name, oi_orderkey, oi_itemkey) VALUES(%s, %s, %s)'''
-                values = (itemName, orderKey, itemKey)
-                self.conn.execute(sql, values)
-                self.conn.commit()
+        elif y == '3':  # for OrderItem
+            itemName = input("Item Name: ")
+            orderKey = input("Order Key: ")
+            itemKey = input("Item Key: ")
 
-            elif y == '4':  # for Menu
-                ingredient = input("Ingredient: ")
-                itemKey = input("Item Key: ")
-                foodPrice = input("Food Price: ")
-                name = input("Name: ")
-                sql = '''INSERT INTO menu (m_ingredients, m_itemkey, m_price, m_name) VALUES(%s, %s, %s, %s)'''
-                values = (ingredient, itemKey, foodPrice, name)
-                self.conn.execute(sql, values)
-                self.conn.commit()
-                pass
-        except sqlite3.OperationalError:
-            print("invalid values")
+            sql = '''INSERT INTO orderitem (oi_name, oi_orderkey, oi_itemkey) VALUES(%s, %s, %s)'''
+            values = (itemName, orderKey, itemKey)
+            self.conn.execute(sql, values)
+            self.conn.commit()
+
+        elif y == '4':  # for Menu
+            ingredients = input("Ingredient: ")
+            itemKey = input("Item Key: ")
+            foodPrice = input("Food Price: ")
+            name = input("Name: ")
+            sql = '''INSERT INTO menu (m_ingredients, m_itemkey, m_price, m_name) VALUES(%s, %s, %s, %s)'''
+            values = (ingredients, itemKey, foodPrice, name)
+            self.conn.execute(sql, values)
+            self.conn.commit()
+            pass
+
         pass
 
     def incomplete_orders(self):
@@ -249,11 +248,14 @@ class phase2:
 
     def todays_orders(self):
         # print out all orders for the current day
-        userinput = input("Enter mm-dd-yyyy")
-        sql = "SELECT o_orderkey FROM orders WHERE o_date = (SELECT CURDATE(o_date) FROM orders)"
+        day = input("enter day(DD): ")
+        month = input("enter month(MM): ")
+        year = input("enter year(YYYY): ")
+        sql = "SELECT o_orderkey FROM orders  " \
+              "WHERE strftime('%d', o_date)  = '" + day + "' AND  strftime('%Y', o_date)  = '" + year + "' AND strftime('%m',o_date) = '" + month + "';"
         self.conn.execute(sql)
         for row in sql:
-            print(row[0])
+            print(row)
             pass
         pass
 
@@ -269,7 +271,7 @@ class phase2:
 
     # Print out a list of all ingredients that have 0 quantity.
     def find_zero_quantity(self):
-        sql = "SELECT I_name FROM ingredients WHERE I_stock = 0"
+        sql = "SELECT l_name FROM ingredients WHERE I_stock = 0"
         result = self.conn.execute(sql)
         for row in result:
             print(row[0])
@@ -291,12 +293,12 @@ class phase2:
         pass
 
     def gross_month_profit(self):
-        month = input("Please enter the month(Format MM): ")
-        year = input("Please enter the Year(Format YYYY): ")
+        month = input("enter month(MM): ")
+        year = input("enter year(YYYY): ")
 
         sql = ("SELECT SUM(o_total) " +
                "FROM orders " +
-               "WHERE o_date LIKE '" + year + "-" + month + "-__'")
+               "WHERE strftime('%Y', o_date)  = '" + year + "' AND strftime('%m',o_date) = '" + month + "';")
 
         result = self.conn.execute(sql)
         gross_profit = 0
@@ -304,6 +306,32 @@ class phase2:
             gross_profit = row[0]
         print(gross_profit)
         pass
+    def employee_wage(self):
+        cost = 0
+        sql = ("SELECT SUM(e_wage) " +
+               "FROM employee")
+        result = self.conn.execute(sql)
+
+        for row in result:
+            cost += row[0]
+        print(cost)
+        pass
+        pass
+
+    def distinct_customers(self):
+        month = input("enter month(MM): ")
+        year = input("enter Year(YYYY): ")
+    
+        sql = ("SELECT COUNT(DISTINCT o_custkey) " +
+               "FROM orders " +
+               "WHERE strftime('%Y', o_date)  = '" + year + "' AND strftime('%m',o_date) = '" + month + "';")
+        custnum = 0
+        result = self.conn.execute(sql)
+        for row in result:
+            custnum = row[0]
+        print("unique customers: " + str(custnum))
+        pass
+
 
     def menu(self):
         user_input = None
@@ -320,25 +348,25 @@ class phase2:
                 self.new_user()
                 pass
             if user_input == '4':
-                self.create_table_customer()
+                self.create_table_submenu()
                 pass
             if user_input == '5':
-                self.create_table_order()
+                self.insert_data()
                 pass
             if user_input == '6':
-                self.create_table_employee()
+
                 pass
             if user_input == '7':
-                self.create_table_orderitem()
+
                 pass
             if user_input == '8':
-                self.create_table_menu()
+
                 pass
             if user_input == '9':
-                self.create_table_ingredient()
+
                 pass
             if user_input == '10':
-                self.insert_data()
+
                 pass
             if user_input == '11':
 
@@ -380,27 +408,49 @@ class phase2:
 
         pass
 
+    def create_table_submenu(self):
+        user_input = input("Enter customer, order, employee, orderitem, menu, ingredient")
+        if user_input == 'customer':
+            self.create_table_customer()
+            pass
+        if user_input == 'order':
+            self.create_table_order()
+            pass
+        if user_input == 'employee':
+            self.create_table_employee()
+            pass
+        if user_input == 'orderitem':
+            self.create_table_orderitem()
+            pass
+        if user_input == 'menu':
+            self.create_table_menu()
+            pass
+        if user_input == 'ingredient':
+            self.create_table_ingredient()
+            pass
+        pass
+
     def help(self):
         print("'1' login as user\n"
               "'2' reset user password\n"
               "'3' insert new user\n"
-              "'4' create customer table\n"
-              "'5' create order table\n"
-              "'6' create employee  table\n"
-              "'7' create order item table\n"
-              "'8' create menu table\n"
-              "'9' create ingredient table\n"
-              "'10' insert new data\n"
-              "'11'\n"
+              "'4' create tables\n"
+              "'5' insert new data\n"
+              "'6' \n"
+              "'7' \n"
+              "'8' \n"
+              "'9' \n"
+              "'10' \n"
+              "'11' \n"
               "'12' view all incomplete orders\n"
-              "'13' view all orders on date mm-dd-yyyu\n"
+              "'13' view all orders of a date\n"
               "'14' Check how many times a certain customer ordered\n"
               "'15' Print ingredients of 0 quantity\n"
               "'16' Print orders handled by certain employee\n"
               "'17' output gross profit for month / year\n"
               "'18' calculate expenses in employee wages\n"
               "'19' calculate number of distinct customer for a month\n"
-              "'20' ?\n"
+              "'20' \n"
               "'e' to exit\n"
               "'h' to display this message"
               )
