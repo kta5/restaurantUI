@@ -404,7 +404,34 @@ class phase2:
         print("Unique customers: " + str(custnum))
         pass
 
+    def calculate_monthly_profit(self):
+        month = input("enter month(MM): ")
+        year = input("enter year(YYYY): ")
 
+        sql = ("SELECT SUM(o_total) " +
+               "FROM orders " +
+               "WHERE strftime('%Y', o_date)  = '" + year + "' AND strftime('%m',o_date) = '" + month + "';")
+
+        result = self.conn.execute(sql)
+        gross_profit = 0
+        for row in result:
+            gross_profit = row[0]
+            pass
+
+        cost = 0
+        sql = ("SELECT SUM(e_wage) " +
+               "FROM employee")
+        result = self.conn.execute(sql)
+
+        for row in result:
+            cost += row[0]
+            pass
+
+        if gross_profit < cost:
+            print("you too poor")
+        else: 
+            print("big money!")
+        pass
 
     def menu(self):
         user_input = None
@@ -468,7 +495,7 @@ class phase2:
                 self.distinct_customers()
                 pass
             if user_input == '20':
-                #self.function20()
+                self.calculate_monthly_profit()
                 pass
             if user_input == 'h':
                 help()
