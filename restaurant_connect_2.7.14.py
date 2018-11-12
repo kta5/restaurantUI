@@ -2,12 +2,16 @@
 import sqlite3
 
 
-conn = sqlite3.connect('restaurant.db')
+self.conn = sqlite3.connect('restaurant.db')
 print "Opened database successfully"
 
 
 #Creates Table CUSTOMER
+<<<<<<< HEAD
 conn.execute('''CREATE TABLE CUSTOMER
+=======
+self.conn.execute('''CREATE TABLE customer
+>>>>>>> c82e30b5ecd47e45f5b6ae1d1699bf352549c036
              (c_name         TEXT     NOT NULL,
               c_custkey      DECIMAL(12,0) NOT NULL) ;''')
 
@@ -15,7 +19,7 @@ print " Customer Table created successfully"
 
 
 #Creates Table ORDER
-conn.execute('''CREATE TABLE ORDER
+self.conn.execute('''CREATE TABLE ORDER
              (o_custkey     DECIMAL NOT NULL,
               o_orderkey    DECIMAL NOT NULL,
               o_total       DECIMAL(8,2) NOT NULL,
@@ -25,18 +29,18 @@ conn.execute('''CREATE TABLE ORDER
 
 print " Order Table created successfully"
 
-#Creates Table EMPLOYEE
-conn.execute('''CREATE TABLE EMPLOYEE
+#Creates Table employee
+self.conn.execute('''CREATE TABLE employee
              (e_name        TEXT     NOT NULL,
               e_employeekey DECIMAL(12,0) NOT NULL,
               e_position    CHAR(20) NOT NULL,
               e_wage         DECIMAL(8,2) NOT NULL);''')
 
-print " Employee Table created successfully"
+print " employee Table created successfully"
 
 
 #Creates Table ORDERITEM
-conn.execute('''CREATE TABLE ORDERITEM
+self.conn.execute('''CREATE TABLE ORDERITEM
              (oi_name       TEXT     NOT NULL,
               oi_orderkey   DECIMAL(12,0) NOT NULL,
               oi_itemkey    DECIMAL(12,0) NOT NULL);''')
@@ -44,7 +48,7 @@ conn.execute('''CREATE TABLE ORDERITEM
 print " Orderitem Table created successfully"
 
 #Creates Table MENU
-conn.execute('''CREATE TABLE MENU
+self.conn.execute('''CREATE TABLE MENU
              (m_ingredients TEXT     NOT NULL,
               m_itemkey     DECIMAL(12,0) NOT NULL,
               m_price       DECIMAL(8,2) NOT NULL,
@@ -53,7 +57,7 @@ conn.execute('''CREATE TABLE MENU
 print " Menu Table created successfully"
 
 #Creates Table INGREDIENT
-conn.execute('''CREATE TABLE INGREDIENT
+self.conn.execute('''CREATE TABLE INGREDIENT
              (l_name        TEXT     NOT NULL,
               l_stock       DECIMAL NOT NULL,
               l_price       DECIMAL(8,2) NOT NULL,
@@ -61,14 +65,6 @@ conn.execute('''CREATE TABLE INGREDIENT
 
 print " Ingredient Table created successfully"
 
-#Creates Table INGREDIENT
-conn.execute('''CREATE TABLE INGREDIENT
-             (l_name        TEXT     NOT NULL,
-              l_stock       DECIMAL NOT NULL,
-              l_price       DECIMAL(8,2) NOT NULL,
-              l_vendorkey   DECIMAL(12,0) NOT NULL);''')
-
-print " Ingredient Table created successfully"
 
 #Adds Data To Tables
 print "1 - CUSTOMER\n"
@@ -79,8 +75,9 @@ print "5 - MENU\n"
 print "6 - INGREDIENTS\n"
 
 
-y = raw_input("Please enter the table you want to add to: ")
+y = input("Please enter the table you want to add to: ")
 
+<<<<<<< HEAD
 if y == 1: #for Customer Table
 
     print("Name: ");
@@ -282,6 +279,11 @@ elif y == 5: # for Menu
     print("Please type in the employee key: ");
     employeekey = raw_input();
     print("\n");
+=======
+self.conn.execute('''INSERT INTO + 
+             (w_warehousekey, w_name, w_supplierkey, w_capacity, w_address, w_nationkey) " +
+				             "VALUES(?, ?, ?, ?, ?, ?)";
+>>>>>>> c82e30b5ecd47e45f5b6ae1d1699bf352549c036
 
     
 # Output the Gross Profit for a certain month and year
@@ -320,9 +322,13 @@ elif y == 5: # for Menu
            "FROM ORDER " +
            "WHERE o_date LIKE '"+ year + "-" + month + "-__'")
 
+<<<<<<< HEAD
     result = conn.execute(sql)
     print result          
 conn.close()
+=======
+self.conn.close()
+>>>>>>> c82e30b5ecd47e45f5b6ae1d1699bf352549c036
 
 
 
