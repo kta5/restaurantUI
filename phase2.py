@@ -28,8 +28,8 @@ class phase2:
         # Creates Table orders
         try:
             self.conn.execute('''CREATE TABLE orders 
-                         (o_custkey     DECIMAL NOT NULL AUTO_INCREMENT, 
-                          o_orderkey    DECIMAL NOT NULL AUTO_INCREMENT, 
+                         (o_custkey     DECIMAL NOT NULL, 
+                          o_orderkey    DECIMAL NOT NULL, 
                           o_total       DECIMAL(8,2) NOT NULL, 
                           o_date        DATE NOT NULL, 
                           o_status      CHAR(1) NOT NULL, 
@@ -97,7 +97,7 @@ class phase2:
             print("table already exists")
         pass
 
-    def login(self):
+    def login(self): # 1 - done
         self.current_user = None
         self.user_group = None
         user_name = input("username: ")
@@ -115,7 +115,7 @@ class phase2:
             print("Invalid credentials")
         pass
 
-    def password_reset(self):
+    def password_reset(self): #2 - done
         employee_table = self.conn.execute("19 count(*) FROM sqlite_master "
                                            "WHERE type = 'table' AND name = 'employee';")
         for row in employee_table:
@@ -159,7 +159,7 @@ class phase2:
         pass
 
     # create new user
-    def new_user(self):
+    def new_user(self): # 3 - done
         new_username = input("Enter new username: ")
         name_check_query = self.conn.execute("SELECT e_username " + 
                                              "FROM employee " + 
@@ -237,7 +237,7 @@ class phase2:
         pass
 
 
-    def print_food_list(self): # 6
+    def print_food_list(self): # 6 - done
         sql = "SELECT m_name, m_price FROM menu "
         result = self.conn.execute(sql)
         print("List of Menu Items: ")
@@ -253,25 +253,57 @@ class phase2:
         date = input("DATE (Format YYYY-MM-DD): ")
         status = input("Status (Type in F or O): ")
         employeeKey = input("Employee Key: ")
-        sql = '''INSERT INTO orders (o_total, o_date, o_status, o_employeekey VALUES(%s, %d, %s, %s)'''
+        sql = "INSERT INTO orders (o_total, o_date, o_status, o_employeekey) VALUES(?, ?, ?, ?)"
         values = (orderPrice, date, status, employeeKey)
+
         self.conn.execute(sql, values)
         self.conn.commit()
         pass
 
-
-
-    def change_order_status(self): # 10 
+    def edit_order(self): # 8
         orderKey = input("Order Key: ")
-        sql = "UPDATE order SET o_status = F WHERE o_orderkey = '" + orderKey + "'"
-        result = self.conn.execute(sql)
+        sql = "DELETE FROM orders WHERE o_orderkey = '" + orderKey + "'"
+
+        self.conn.execute(sql)
+        self.conn.commit()
+
+        print("Order " + orderKey + " deleted.")
+        pass
+
+
+    def remove_order(self): # 9 - done
+        orderKey = input("Order Key: ")
+        sql = "DELETE FROM orders WHERE o_orderkey = '" + orderKey + "'"
+
+        self.conn.execute(sql)
+        self.conn.commit()
+
+        print("Order " + orderKey + " deleted.")
+        pass
+
+    def change_order_status(self): # 10 - done
+        orderKey = input("Order Key: ")
+        statusInput = input("Enter Status (O or F): ")
+        sql = "UPDATE orders SET o_status = '" + statusInput + "' WHERE o_orderkey = '" + orderKey + "'"
+
+        self.conn.execute(sql)
+        self.conn.commit()
         print("Order " + orderKey + " updated.")
         pass
 
 
+    def complete_orders(self): # 11 - done
+        # view all current(incomplete) order, if none please state so.
+        sql = "SELECT o_orderkey, o_date FROM orders WHERE o_status = 'F'"
+        result = self.conn.execute(sql)
+        print("complete orders: ")
+        for row in result:
+            print("order# " + str(row[0]))
+            pass
+        pass
 
 
-    def incomplete_orders(self): # 12
+    def incomplete_orders(self): # 12 - done
         # view all current(incomplete) order, if none please state so.
         sql = "SELECT o_orderkey, o_date FROM orders WHERE o_status = 'O'"
         result = self.conn.execute(sql)
@@ -281,7 +313,7 @@ class phase2:
             pass
         pass
 
-    def todays_orders(self): # 13
+    def todays_orders(self): # 13 - done
         # print out all orders for the current day
         day = input("enter day(DD): ")
         month = input("enter month(MM): ")
@@ -294,7 +326,7 @@ class phase2:
             pass
         pass
 
-    def num_specific_customer_orders(self): # 14
+    def num_specific_customer_orders(self): # 14 - done
         # check how many times a certain customer ordered
         custkey = input("type in the customer key: ")
         sql = ("SELECT COUNT(o_orderkey) FROM orders WHERE o_custkey = " + custkey)
@@ -305,7 +337,7 @@ class phase2:
         pass
 
     # Print out a list of all ingredients that have 0 quantity.
-    def find_zero_quantity(self): # 15
+    def find_zero_quantity(self): # 15 - done
         sql = "SELECT l_name FROM ingredients WHERE l_stock = 0"
         result = self.conn.execute(sql)
         for row in result:
@@ -314,7 +346,7 @@ class phase2:
         pass
 
     # Print out all orders handled by a certain employee
-    def employee_orders(self): # 16
+    def employee_orders(self): # 16 - done
         employeekey = input("Please type in the employee key: ")
         sql = ("SELECT o_orderkey " +
                "FROM orders " +
@@ -326,7 +358,7 @@ class phase2:
             pass
         pass
 
-    def gross_month_profit(self): # 17
+    def gross_month_profit(self): # 17 - done
         month = input("enter month(MM): ")
         year = input("enter year(YYYY): ")
 
@@ -340,7 +372,7 @@ class phase2:
             gross_profit = row[0]
         print(gross_profit)
         pass
-    def employee_wage(self): # 18
+    def employee_wage(self): # 18 - done
         cost = 0
         sql = ("SELECT SUM(e_wage) " +
                "FROM employee")
@@ -352,7 +384,7 @@ class phase2:
         pass
         pass
 
-    def distinct_customers(self): # 19
+    def distinct_customers(self): # 19 - done
         month = input("enter month(MM): ")
         year = input("enter Year(YYYY): ")
     
@@ -397,13 +429,13 @@ class phase2:
 
                 pass
             if user_input == '9':
-
+                self.remove_order()
                 pass
             if user_input == '10':
                 self.change_order_status()
                 pass
             if user_input == '11':
-
+                self.complete_orders()
                 pass
             if user_input == '12':
                 self.incomplete_orders()
@@ -472,9 +504,9 @@ class phase2:
               "'5' insert new data\n"
               "'6' Print out a list of food items available to order\n"
               "'7' Create a new order\n"
-              "'8' \n"
-              "'9' \n"
-              "'10' Set an order as done\n"
+              "'8' Edit Order Details\n"
+              "'9' Remove Order\n"
+              "'10' Change Order Status\n"
               "'11' View all complete orders\n"
               "'12' view all incomplete orders\n"
               "'13' view all orders of a date\n"
