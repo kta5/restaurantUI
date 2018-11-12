@@ -218,7 +218,7 @@ class phase2:
             orderKey = input("Order Key: ")
             itemKey = input("Item Key: ")
 
-            sql = '''INSERT INTO orderitem (oi_name, oi_orderkey, oi_itemkey) VALUES(%s, %s, %s)'''
+            sql = '''INSERT INTO orderitem (oi_name, oi_orderkey, oi_itemkey) VALUES(?, ?, ?)'''
             values = (itemName, orderKey, itemKey)
             self.conn.execute(sql, values)
             self.conn.commit()
@@ -228,14 +228,12 @@ class phase2:
             itemKey = input("Item Key: ")
             foodPrice = input("Food Price: ")
             name = input("Name: ")
-            sql = '''INSERT INTO menu (m_ingredients, m_itemkey, m_price, m_name) VALUES(%s, %s, %s, %s)'''
+            sql = '''INSERT INTO menu (m_ingredients, m_itemkey, m_price, m_name) VALUES(?, ?, ?, ?)'''
             values = (ingredients, itemKey, foodPrice, name)
             self.conn.execute(sql, values)
             self.conn.commit()
             pass
-
         pass
-
 
     def print_food_list(self): # 6 - done
         sql = "SELECT m_name, m_price FROM menu "
@@ -246,28 +244,35 @@ class phase2:
             pass
         pass
 
-
-
-    def create_new_order(self): # 7
+    def create_new_order(self): # 7 - done
+        custName = input("Customer Name: ")
+        custKey = input("Customer Key: ")
+        orderKey = input("Order Key: ")
         orderPrice = input("Total Price: ")
         date = input("DATE (Format YYYY-MM-DD): ")
         status = input("Status (Type in F or O): ")
         employeeKey = input("Employee Key: ")
-        sql = "INSERT INTO orders (o_total, o_date, o_status, o_employeekey) VALUES(?, ?, ?, ?)"
-        values = (orderPrice, date, status, employeeKey)
+        sql = "INSERT INTO orders (o_custkey, o_orderkey, o_total, o_date, o_status, o_employeekey) VALUES(?, ?, ?, ?, ?, ?)"
+        values = (custKey, orderKey, orderPrice, date, status, employeeKey)
+        
+        sql2 = "INSERT INTO customer(c_name, c_custkey) VALUES(?,?)" #also updates the customer table
+        values2 = (custName, custKey)
 
         self.conn.execute(sql, values)
+        self.conn.execute(sql2, values2)
         self.conn.commit()
         pass
 
-    def edit_order(self): # 8
-        orderKey = input("Order Key: ")
-        sql = "DELETE FROM orders WHERE o_orderkey = '" + orderKey + "'"
-
-        self.conn.execute(sql)
+    def output_order(self): # 8 - done
+        orderTotalAmount = input("Enter amount: ")
+        sql = "SELECT o_orderkey, o_total FROM orders WHERE o_total > '" + orderTotalAmount + "'"
+        result = self.conn.execute(sql)
         self.conn.commit()
 
-        print("Order " + orderKey + " deleted.")
+        for row in result:
+            print("Order #" + str(row[0]) + " Price: $ " + str(row[1]))
+            pass
+
         pass
 
 
@@ -278,7 +283,7 @@ class phase2:
         self.conn.execute(sql)
         self.conn.commit()
 
-        print("Order " + orderKey + " deleted.")
+        print("Order #" + orderKey + " deleted.")
         pass
 
     def change_order_status(self): # 10 - done
@@ -288,7 +293,7 @@ class phase2:
 
         self.conn.execute(sql)
         self.conn.commit()
-        print("Order " + orderKey + " updated.")
+        print("Order #" + orderKey + " updated.")
         pass
 
 
@@ -298,7 +303,7 @@ class phase2:
         result = self.conn.execute(sql)
         print("complete orders: ")
         for row in result:
-            print("order# " + str(row[0]))
+            print("order #" + str(row[0]))
             pass
         pass
 
@@ -372,6 +377,7 @@ class phase2:
             gross_profit = row[0]
         print(gross_profit)
         pass
+
     def employee_wage(self): # 18 - done
         cost = 0
         sql = ("SELECT SUM(e_wage) " +
@@ -395,15 +401,15 @@ class phase2:
         result = self.conn.execute(sql)
         for row in result:
             custnum = row[0]
-        print("unique customers: " + str(custnum))
+        print("Unique customers: " + str(custnum))
         pass
+
 
 
     def menu(self):
         user_input = None
         while user_input != 'e':
             user_input = input("input: ")
-
             if user_input == '1':
                 self.login()
                 pass
@@ -426,7 +432,7 @@ class phase2:
                 self.create_new_order()
                 pass
             if user_input == '8':
-
+                self.output_order()
                 pass
             if user_input == '9':
                 self.remove_order()
@@ -471,15 +477,14 @@ class phase2:
         print("disconnecting from " + self.dbpath + " ...")
         self.conn.close()
         exit()
-
         pass
 
     def create_table_submenu(self):
-        user_input = input("Enter customer, order, employee, orderitem, menu, or ingredient: ")
+        user_input = input("Enter customer, orders, employee, orderitem, menu, or ingredient: ")
         if user_input == 'customer':
             self.create_table_customer()
             pass
-        if user_input == 'order':
+        if user_input == 'orders':
             self.create_table_order()
             pass
         if user_input == 'employee':
@@ -497,14 +502,14 @@ class phase2:
         pass
 
     def help(self):
-        print("'1' login as user\n"
-              "'2' reset user password\n"
-              "'3' insert new user\n"
-              "'4' create tables\n"
-              "'5' insert new data\n"
+        print("'1' Employee Login\n"
+              "'2' Reset Employee Password\n"
+              "'3' Add a new Employee\n"
+              "'4' Create Tables\n"
+              "'5' Insert Data Manually\n"
               "'6' Print out a list of food items available to order\n"
               "'7' Create a new order\n"
-              "'8' Edit Order Details\n"
+              "'8' Output all orders over a certain amount\n"
               "'9' Remove Order\n"
               "'10' Change Order Status\n"
               "'11' View all complete orders\n"
@@ -513,10 +518,10 @@ class phase2:
               "'14' Check how many times a certain customer ordered\n"
               "'15' Print ingredients of 0 quantity\n"
               "'16' Print orders handled by certain employee\n"
-              "'17' output gross profit for month / year\n"
-              "'18' calculate expenses in employee wages per hour\n"
-              "'19' calculate number of distinct customer for a month\n"
-              "'20' \n"
+              "'17' Output gross profit for month / year\n"
+              "'18' Calculate expenses in employee wages per hour\n"
+              "'19' Calculate number of distinct customer for a month\n"
+              "'20' Determine if you can afford to pay all your employees\n"
               "'e' to exit\n"
               "'h' to display this message"
               )
