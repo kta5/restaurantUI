@@ -1,10 +1,13 @@
 import sqlite3
+import tkinter
+
 
 class phase2:
     conn = None
     dbpath = "restaurant.db"
     current_user = None
     user_group = None
+
     def __init__(self):
         print('connecting to ' + self.dbpath + ' ...')
         self.conn = sqlite3.connect(self.dbpath)
