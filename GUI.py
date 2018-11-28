@@ -1,32 +1,37 @@
 import tkinter
 
 
-class GUI():
+class GUI:
 
-    top = tkinter.Tk()
-    cuser = None
+    top = tkinter.Tk()  # tkinter instance
+    cuser = None    # current user
 
     def __init__(self):
         # Code to add widgets will go here...
         self.top.geometry("500x500")
-        # Employee Login Option
-        w = tkinter.Button(self.top, text = "Employee Login", command=self.Login)
-        w.place(x = 50, y = 50)
         self.main()
+        pass
 
-    def Login(self):
+    def login(self):
         msg = tkinter.messagebox.showInfo("Login Prompt", "Please enter your Username and Password")
+        
+        pass
 
     def main(self):
         while True:
             if self.cuser is not None:
-                self.Login()
+                self.login()
+                pass
+            else:
+
+                pass
 
             self.top.update_idletasks()
             self.top.update()
             pass
+        pass
 
-
+    pass
 
 GUI()
 
