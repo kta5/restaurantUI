@@ -1,10 +1,8 @@
 extends Node
 
 # Variables
-var current_user = null
-var entrybox_username = null
-var entrybox_password = null
-
+var entrybox_username = ""
+var entrybox_password = ""
 var root_script = null
 
 func _ready():
