@@ -10,13 +10,9 @@ config_version=3
 
 [application]
 
-config/name="SQLiteTest"
-run/main_scene="res://scene.tscn"
+config/name="Restaurant UI"
+run/main_scene="res://Login.tscn"
 config/icon="res://icon.png"
-
-[gdnative]
-
-singletons=[  ]
 
 [rendering]
 
