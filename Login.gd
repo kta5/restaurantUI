@@ -1,31 +1,33 @@
 extends Node
 
-# SQLite module
-const SQLite = preload("res://lib/gdsqlite.gdns");
 
 # Variables
 var current_user = null
 var entrybox_username = null
 var entrybox_password = null
-
+var root_script = null
 
 func _ready():
-	# Create gdsqlite instance
-	var db = SQLite.new()
-
-		# Open database
-	if (!db.open_db("res://restaurant.db")):
-		print("Cannot open database.")
-		return
-	else:
-		print("Connected!")
-		
-	
+	root_script = get_tree().get_root().get_node("dbconnection")
 	pass
 
-func login():
-		# Get item list from db
-	var result = db.fetch_array("SELECT * from employees")
-	#if (not pots or pots.empty()):
-	#	return;
+func login_attempt():
+	# Get item list from db
+	var querry = "SELECT e_position from employee WHERE e_username = '"
+	querry += entrybox_username
+	querry += "' AND e_password = '"
+	querry += entrybox_password
+	querry += "' ;"
+#
+	var result = root_script.db.fetch_array(querry)
+	if (not result or result.empty()):
+		print("incorrect")
+		return;
+	else:
+		current_user = entrybox_username
+
+		for i in result:
+			position = i.e_position
+#
+		
 	pass
