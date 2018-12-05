@@ -24,3 +24,15 @@ func displaybuttons():
 	
 		pass
 	pass
+	
+
+func _on_Password_Change_Button_pressed():
+	get_tree().change_scene("res://scenes/pwchange.tscn")
+	pass # replace with function body
+
+
+func _on_Logout_Button_pressed():
+	root_script.current_user = null
+	root_script.user_group = null
+	get_tree().change_scene("res://scenes/Login.tscn")
+	pass # replace with function body

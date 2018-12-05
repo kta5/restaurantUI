@@ -36,5 +36,9 @@ func _on_Login_Button_pressed():
 		root_script.current_user = entrybox_username
 		for i in result:
 			root_script.user_group = i.e_position
+			
+		get_tree().change_scene("res://scenes/menu.tscn")
+		pass
 	
+
 	pass # replace with function body

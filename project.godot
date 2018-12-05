@@ -11,12 +11,12 @@ config_version=3
 [application]
 
 config/name="Restaurant UI"
-run/main_scene="res://Login.tscn"
+run/main_scene="res://scenes/Login.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-dbconnection="*res://dbconnection.gd"
+dbconnection="*res://scripts/dbconnection.gd"
 
 [rendering]
 

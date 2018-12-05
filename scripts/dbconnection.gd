@@ -20,3 +20,9 @@ func _ready():
 		print("Connected!")
 	
 	pass
+	
+
+func _exit_tree():
+	if (db and db.loaded()):
+		# Close database
+		db.close();
