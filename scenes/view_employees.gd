@@ -48,7 +48,7 @@ func refresh():
 			filtered = true
 		else:
 			sql += " AND "
-		sql += "o_employeekey = " + e_filter
+		sql += "e_name LIKE  '%" + e_filter + "%'"
 	
 	print (sql)
 	var result = root_script.db.fetch_array(sql)
@@ -89,4 +89,9 @@ func _on_Employee_LineEdit_text_changed(new_text):
 
 func _on_Status_Options_item_selected(ID):
 	status_filter_id = ID
+	pass # replace with function body
+
+
+func _on_Add_Employee_Button_pressed():
+	get_tree().change_scene("res://scenes/add_employee.tscn")
 	pass # replace with function body

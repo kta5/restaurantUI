@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/view_employees.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buttons/back_to_menu.tscn" type="PackedScene" id=2]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -177,6 +177,8 @@ text = "Employee"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[connection signal="pressed" from="Add Employee Button" to="." method="_on_Add_Employee_Button_pressed"]
 
 [connection signal="item_selected" from="Status Options" to="." method="_on_Status_Options_item_selected"]
 
