@@ -95,7 +95,7 @@ func _on_Button_pressed():
 			edited = true
 		else:
 			querry += ", "
-		querry += "o_date = " + okey_le.text + " "
+		querry += "o_date = date('" + date_le.text + "') "
 		pass
 	if cust_le.text != str(original_custkey):
 		if not edited:
@@ -109,7 +109,7 @@ func _on_Button_pressed():
 			edited = true
 		else:
 			querry += ", "
-		querry += "o_status = " + status_le.text + " "
+		querry += "o_status = '" + status_le.text + "' "
 		pass
 	if total_le.text != str(original_total):
 		if not edited:
@@ -128,7 +128,7 @@ func _on_Button_pressed():
 	
 	
 	querry += "WHERE o_orderkey = " + str(original_order_key)
-	querry += "' ;"
+	querry += " ;"
 	if edited:
 		print( querry)
 		root_script.db.query(str(querry))
