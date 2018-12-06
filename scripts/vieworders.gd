@@ -32,13 +32,13 @@ func refresh():
 	
 	for i in result:
 		orders_list.append(i)
-	print(orders_list)
+
 	var num_things = orders_list.size()
 	var startnum = currentpage * max_orders_displayed - 1
 	var endnum = currentpage * max_orders_displayed - 1
 	if endnum  > num_things - 1:
 		endnum = num_things-1
-	for i in range(0, num_things-1):
+	for i in range(0, num_things):
 		var new_order = orders_hbox.instance()
 		#order_key, date, custkey, status, total, employee
 		var o = orders_list[i]

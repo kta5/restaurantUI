@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/orders_hbox.gd" type="Script" id=1]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -160,5 +160,43 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+
+[node name="Button" type="Button" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 372.0
+margin_right = 430.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Update"
+flat = false
+align = 1
+
+[connection signal="text_changed" from="orderkey LineEdit" to="." method="_on_orderkey_LineEdit_text_changed"]
+
+[connection signal="text_changed" from="date LineEdit" to="." method="_on_date_LineEdit_text_changed"]
+
+[connection signal="text_changed" from="custkey LineEdit" to="." method="_on_custkey_LineEdit_text_changed"]
+
+[connection signal="text_changed" from="status LineEdit" to="." method="_on_status_LineEdit_text_changed"]
+
+[connection signal="text_changed" from="total LineEdit" to="." method="_on_total_LineEdit_text_changed"]
+
+[connection signal="text_changed" from="employeekey LineEdit" to="." method="_on_employeekey_LineEdit_text_changed"]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
 
