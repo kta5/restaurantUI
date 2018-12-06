@@ -2,6 +2,7 @@ extends Node2D
 
 var root_script
 var price = 0
+var tpricele = 0
 var cname = ""
 var ckey = 0
 var employee = ""
@@ -9,10 +10,15 @@ var employeekey = null
 var time = null
 var date = null
 var okey = 0
+var menu
+var oi_list = Array()
 
 func _ready():
 	root_script = get_tree().get_root().get_node("dbconnection")
+	menu = get_child(10)
+	menu.hide()
 	time = OS.get_date()
+	tpricele = get_child(4)
 	if time.month < 10:
 		date = str(time.year) + "-0" + str(time.month)
 		if time.day < 10:
@@ -100,8 +106,9 @@ func _on_Add_Order_pressed():
 
 
 func _on_Add_Item_pressed():
-	
+	menu.show()
 	pass # replace with function body
 
-
-
+func update_pricelabel():
+	tpricele.text = str(price)
+	pass
