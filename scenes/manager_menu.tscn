@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://commodore_64/Commodore Angled v1.2.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://scenes/buttons/Logout Button.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/buttons/Change Password Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/buttons/logout_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/buttons/change_password_button.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -12,7 +12,7 @@ use_filter = false
 font_data = ExtResource( 1 )
 _sections_unfolded = [ "Settings" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="Label" type="Label" parent="." index="0"]
 

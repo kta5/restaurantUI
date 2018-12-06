@@ -37,8 +37,7 @@ func _on_Login_Button_pressed():
 		for i in result:
 			root_script.user_group = i.e_position
 		
-		if root_script.user_group == "Manager":
-			get_tree().change_scene("res://scenes/manager_menu.tscn")
+		root_script.go_to_menu()
 		
 		
 		pass
