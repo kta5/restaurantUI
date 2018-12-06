@@ -13,10 +13,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 23.0
-margin_top = 131.0
-margin_right = 991.0
-margin_bottom = 580.0
+margin_left = 6.0
+margin_top = 134.0
+margin_right = 974.0
+margin_bottom = 583.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -28,9 +28,37 @@ _sections_unfolded = [ "Theme", "Visibility" ]
 
 [node name="Back To Menu" parent="." index="1" instance=ExtResource( 2 )]
 
-margin_left = 5.48901
-margin_top = 9.46259
-margin_right = 275.489
-margin_bottom = 59.4626
+margin_left = 5.0
+margin_top = 9.0
+margin_right = 275.0
+margin_bottom = 59.0
+
+[node name="Add Order Button" type="Button" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 303.0
+margin_top = 9.0
+margin_right = 573.0
+margin_bottom = 59.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Add Order"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect" ]
+
+[connection signal="pressed" from="Add Order Button" to="." method="_on_Add_Order_Button_pressed"]
 
 

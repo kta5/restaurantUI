@@ -54,3 +54,10 @@ func refresh():
 func _on_Back_Button_pressed():
 	get_tree().change_scene("res://scenes/menu.tscn")
 	pass # replace with function body
+
+
+
+
+func _on_Add_Order_Button_pressed():
+	get_tree().change_scene("res://scenes/Add_Order_Kevin.tscn")
+	pass # replace with function body
