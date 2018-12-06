@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Add_Order_Kevin.gd" type="Script" id=1]
 [ext_resource path="res://commodore_64/Commodore Angled v1.2.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Login.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/buttons/view_orders_button.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -20,7 +21,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font" ]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 position = Vector2( 233.78, -56.7427 )
 script = ExtResource( 1 )
@@ -246,6 +247,14 @@ group = null
 text = "Add Item"
 flat = false
 align = 1
+
+[node name="View All Orders" parent="." index="9" instance=ExtResource( 4 )]
+
+margin_left = -231.0
+margin_top = 58.0
+margin_right = 27.0
+margin_bottom = 108.0
+text = "Back"
 
 [connection signal="text_changed" from="Customer Name LineEdit" to="." method="_on_Customer_Name_LineEdit_text_changed"]
 

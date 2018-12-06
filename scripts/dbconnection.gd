@@ -7,6 +7,8 @@ const SQLite = preload("res://lib/gdsqlite.gdns")
 var db = null
 var current_user = null
 var user_group = null
+var time
+var date = ""
 
 func _ready():
 	# Create gdsqlite instance
@@ -18,6 +20,21 @@ func _ready():
 		return
 	else:
 		print("Connected!")
+	
+	time = OS.get_date()
+	if time.month < 10:
+		date = str(time.year) + "-0" + str(time.month)
+		if time.day < 10:
+			date += "-0" + str(time.day)
+		else:
+			date += "-" + str(time.day)
+	else:
+		date = str(time.year) + "-" + str(time.month)
+		if time.day < 10:
+			date += "-0" + str(time.day)
+		else:
+			date += "-" + str(time.day)
+	print (date)
 	
 	pass
 	

@@ -10,13 +10,23 @@ var currentpage = 0
 var max_orders_displayed = 3
 var orders_hbox = preload("res://scenes/orders_hbox.tscn")
 var container = null
+var status_filter
 
+var status_filter_id = 0
+
+var today_only
+var e_filter = ""
+var c_filter = ""
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	root_script = get_tree().get_root().get_node("dbconnection")
 	container = self.get_child(0)
 	refresh()
+	status_filter = self.get_child(3)
+	status_filter.add_item("All")
+	status_filter.add_item("O")
+	status_filter.add_item("F")
 	pass
 
 #func _process(delta):
@@ -25,13 +35,50 @@ func _ready():
 #	pass
 
 func refresh():
+	for child in container.get_children():
+		child.queue_free()
+	
 	orders_list = Array()
 	# view all current(incomplete) order, if none please state so
 	var sql = "SELECT * FROM orders"
+	
+	var filtered = false
+	if status_filter_id == 1:
+		sql += " WHERE o_status = 'O' "
+		filtered = true
+	if status_filter_id == 2:
+		sql += " WHERE o_status = 'F' "
+		filtered = true
+		
+	if today_only:
+		if not filtered:
+			sql += " WHERE "
+		else:
+			sql += " AND "
+		sql += "o_date = date('" + root_script.date + "')"
+		
+	if e_filter != "":
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += "o_employeekey = " + e_filter
+		
+	if c_filter != "":
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += "o_custkey = " + c_filter
+	
+	print (sql)
 	var result = root_script.db.fetch_array(sql)
 	
-	for i in result:
-		orders_list.append(i)
+	if result != null:
+		for i in result:
+			orders_list.append(i)
 
 	var num_things = orders_list.size()
 	var startnum = currentpage * max_orders_displayed - 1
@@ -60,4 +107,29 @@ func _on_Back_Button_pressed():
 
 func _on_Add_Order_Button_pressed():
 	get_tree().change_scene("res://scenes/Add_Order_Kevin.tscn")
+	pass # replace with function body
+
+
+func _on_Refresh_pressed():
+	refresh()
+	pass # replace with function body
+
+
+func _on_Status_Filter_item_selected(ID):
+	status_filter_id = ID
+	pass # replace with function body
+
+
+func _on_Todays_Orders_toggled(button_pressed):
+	today_only = button_pressed
+	pass # replace with function body
+
+
+func _on_Employee_LineEdit_text_changed(new_text):
+	e_filter = new_text
+	pass # replace with function body
+
+
+func _on_Customer_LineEdit_text_changed(new_text):
+	c_filter = new_text
 	pass # replace with function body
