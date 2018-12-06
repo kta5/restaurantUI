@@ -101,6 +101,10 @@ func _on_Add_Order_pressed():
 	print (new_order_query)
 	root_script.db.query(str(new_order_query))
 	
+	for query in oi_list:
+		root_script.db.query(str(query))
+		pass
+	
 	get_tree().change_scene("res://scenes/view_orders.tscn")
 	pass # replace with function body
 
