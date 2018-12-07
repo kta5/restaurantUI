@@ -11,7 +11,7 @@ var max_orders_displayed = 3
 var orders_hbox = preload("res://scenes/orders_hbox.tscn")
 var container = null
 var status_filter
-
+var te
 
 var status_filter_id = 0
 
@@ -26,11 +26,14 @@ func _ready():
 	# Initialization here
 	root_script = get_tree().get_root().get_node("dbconnection")
 	container = self.get_child(0)
-	refresh()
+
 	status_filter = self.get_child(3)
+	te = self.get_child(4)
 	status_filter.add_item("All")
 	status_filter.add_item("O")
 	status_filter.add_item("F")
+	refresh()
+		
 	pass
 
 #func _process(delta):
@@ -166,3 +169,17 @@ func _on_after_le_text_changed(new_text):
 func _on_before_le_text_changed(new_text):
 	bd_filter = new_text
 	pass # replace with function body
+	
+func show_items(order_number):
+	te.text = ""
+	var sql = "SELECT * FROM orderitem WHERE oi_orderkey = "
+	sql += str(order_number)
+	print( sql)
+	var result = root_script.db.fetch_array(sql)
+	
+	if result != null:
+		for i in result:
+			te.text += i.oi_name + " "
+	
+
+	pass

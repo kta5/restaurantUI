@@ -5,7 +5,7 @@
 [ext_resource path="res://Login.tres" type="DynamicFont" id=3]
 [ext_resource path="res://font_small.tres" type="DynamicFont" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -42,9 +42,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 760.0
-margin_top = 510.0
+margin_top = 520.0
 margin_right = 1003.0
-margin_bottom = 557.0
+margin_bottom = 567.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -90,7 +90,41 @@ align = 1
 items = [  ]
 selected = -1
 
-[node name="Refresh" type="Button" parent="." index="4"]
+[node name="TextEdit" type="TextEdit" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 300.0
+margin_top = 510.0
+margin_right = 730.0
+margin_bottom = 570.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+text = ""
+readonly = false
+highlight_current_line = false
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+override_selected_font_color = false
+context_menu_enabled = true
+smooth_scrolling = false
+v_scroll_speed = 80.0
+hiding_enabled = 0
+wrap_lines = false
+caret_block_mode = false
+caret_blink = false
+caret_blink_speed = 0.65
+caret_moving_by_right_click = true
+
+[node name="Refresh" type="Button" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -116,7 +150,7 @@ text = "Refresh"
 flat = false
 align = 1
 
-[node name="Employee LineEdit" type="LineEdit" parent="." index="5"]
+[node name="Employee LineEdit" type="LineEdit" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -141,7 +175,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="after_le" type="LineEdit" parent="." index="6"]
+[node name="after_le" type="LineEdit" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -166,7 +200,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="before_le" type="LineEdit" parent="." index="7"]
+[node name="before_le" type="LineEdit" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -191,7 +225,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="Customer LineEdit" type="LineEdit" parent="." index="8"]
+[node name="Customer LineEdit" type="LineEdit" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -216,7 +250,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="Status Label" type="Label" parent="." index="9"]
+[node name="Status Label" type="Label" parent="." index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -238,7 +272,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Employee Label" type="Label" parent="." index="10"]
+[node name="Employee Label" type="Label" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -260,7 +294,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="after" type="Label" parent="." index="11"]
+[node name="after" type="Label" parent="." index="12"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -282,7 +316,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="before" type="Label" parent="." index="12"]
+[node name="before" type="Label" parent="." index="13"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -304,7 +338,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Customer Label" type="Label" parent="." index="13"]
+[node name="Customer Label" type="Label" parent="." index="14"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -326,7 +360,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Todays Orders" type="CheckButton" parent="." index="14"]
+[node name="Todays Orders" type="CheckButton" parent="." index="15"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -351,7 +385,7 @@ group = null
 flat = false
 align = 0
 
-[node name="Todays Label" type="Label" parent="." index="15"]
+[node name="Todays Label" type="Label" parent="." index="16"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -373,7 +407,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label" type="Label" parent="." index="16"]
+[node name="Label" type="Label" parent="." index="17"]
 
 anchor_left = 0.0
 anchor_top = 0.0

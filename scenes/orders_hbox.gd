@@ -142,3 +142,8 @@ func _on_Button2_pressed():
 	querry += str(original_order_key)
 	root_script.db.query(str(querry))
 	pass # replace with function body
+
+
+func _on_Button3_pressed():
+	get_parent().get_parent().show_items(original_order_key)
+	pass # replace with function body
