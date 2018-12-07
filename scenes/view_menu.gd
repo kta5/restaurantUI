@@ -4,7 +4,7 @@ var root_script = null
 var orders_hbox = preload("res://scenes/menu_hbox.tscn")
 var container = null
 var orders_list = Array()
-
+var nfilter = ""
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -20,6 +20,16 @@ func refresh():
 	
 	# view all current(incomplete) order, if none please state so
 	var sql = "SELECT * FROM menu"
+	
+	var filtered = false
+
+	if nfilter != "":
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += "m_name LIKE '" + nfilter + "%'"
 		
 	orders_list = Array()
 	print (sql)
@@ -55,7 +65,7 @@ func _on_Refresh_pressed():
 
 
 func _on_Employee_LineEdit_text_changed(new_text):
-
+	nfilter = new_text
 	pass # replace with function body
 
 

@@ -5,6 +5,8 @@ var orders_hbox = preload("res://scenes/in_hbox.tscn")
 var container = null
 var orders_list = Array()
 var oos_only = false
+var nfilter = ""
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -20,8 +22,23 @@ func refresh():
 	# view all current(incomplete) order, if none please state so
 	var sql = "SELECT * FROM ingredients"
 	
+	var filtered = false
 	if oos_only:
-		sql += " WHERE i_stock = 0"
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += " i_stock = 0"
+	
+	if nfilter != "":
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += "i_name LIKE '" + nfilter + "%'"
+			
 	
 	orders_list = Array()
 	print (sql)
@@ -58,4 +75,9 @@ func _on_Refresh_pressed():
 
 func _on_CheckButton_toggled(button_pressed):
 	oos_only = button_pressed
+	pass # replace with function body
+
+
+func _on_Employee_LineEdit_text_changed(new_text):
+	nfilter = new_text
 	pass # replace with function body

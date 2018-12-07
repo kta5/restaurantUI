@@ -12,11 +12,15 @@ var orders_hbox = preload("res://scenes/orders_hbox.tscn")
 var container = null
 var status_filter
 
+
 var status_filter_id = 0
 
 var today_only
 var e_filter = ""
 var c_filter = ""
+var bd_filter = ""
+var ad_filter = ""
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -72,7 +76,26 @@ func refresh():
 		else:
 			sql += " AND "
 		sql += "o_custkey = " + c_filter
-	
+		
+	if ad_filter != "":
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += "o_date >= '" + ad_filter + "' "
+		
+		
+				
+	if bd_filter != "":
+		if not filtered:
+			sql += " WHERE "
+			filtered = true
+		else:
+			sql += " AND "
+		sql += "o_date <= '" + bd_filter + "' "
+		
+		
 	print (sql)
 	var result = root_script.db.fetch_array(sql)
 	
@@ -132,4 +155,14 @@ func _on_Employee_LineEdit_text_changed(new_text):
 
 func _on_Customer_LineEdit_text_changed(new_text):
 	c_filter = new_text
+	pass # replace with function body
+
+
+func _on_after_le_text_changed(new_text):
+	ad_filter = new_text
+	pass # replace with function body
+
+
+func _on_before_le_text_changed(new_text):
+	bd_filter = new_text
 	pass # replace with function body
