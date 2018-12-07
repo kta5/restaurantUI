@@ -1,8 +1,8 @@
 extends Node
 
 # Variables
-var entrybox_username = "jlok"
-var entrybox_password = "no"
+var entrybox_username = ""
+var entrybox_password = ""
 var root_script = null
 
 func _ready():

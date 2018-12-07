@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/oi_hbox.gd" type="Script" id=1]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -26,8 +26,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 13.0
-margin_right = 36.0
+margin_right = 140.0
 margin_bottom = 27.0
+rect_min_size = Vector2( 140, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -38,6 +39,7 @@ text = "name"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
 
 [node name="Label2" type="Label" parent="." index="1"]
 
@@ -45,10 +47,11 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 40.0
+margin_left = 144.0
 margin_top = 13.0
-margin_right = 84.0
+margin_right = 194.0
 margin_bottom = 27.0
+rect_min_size = Vector2( 50, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -59,6 +62,7 @@ text = "$ price"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
 
 [node name="Button" type="Button" parent="." index="2"]
 
@@ -66,8 +70,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 88.0
-margin_right = 123.0
+margin_left = 198.0
+margin_right = 233.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

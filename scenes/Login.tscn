@@ -25,7 +25,6 @@ _sections_unfolded = [ "Font" ]
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 __meta__ = {
-"_edit_group_": true,
 "_edit_vertical_guides_": [  ]
 }
 
@@ -46,7 +45,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
-text = "no"
 focus_mode = 2
 context_menu_enabled = true
 placeholder_alpha = 0.6
@@ -71,7 +69,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
-text = "jlok"
 focus_mode = 2
 context_menu_enabled = true
 placeholder_alpha = 0.6
