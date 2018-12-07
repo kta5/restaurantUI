@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/view_menu_button.gd" type="Script" id=1]
+[ext_resource path="res://Login.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/view_menu_button.gd" type="Script" id=2]
 
-[node name="View Menu" type="Button" index="0"]
+[node name="View Menu" type="Button"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -17,6 +18,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -24,8 +26,8 @@ group = null
 text = "View Menu"
 flat = false
 align = 1
-script = ExtResource( 1 )
-_sections_unfolded = [ "Anchor", "Rect" ]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Anchor", "Rect", "Visibility", "custom_fonts" ]
 
 [connection signal="pressed" from="." to="." method="_on_View_Menu_pressed"]
 

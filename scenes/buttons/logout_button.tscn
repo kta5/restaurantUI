@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/buttons/logout_button.gd" type="Script" id=1]
-
+[ext_resource path="res://Login.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/buttons/logout_button.gd" type="Script" id=2]
 
 [node name="Logout Button" type="Button" index="0"]
 
@@ -9,7 +9,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 270.0
+margin_right = 250.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -18,6 +18,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -25,8 +26,8 @@ group = null
 text = "Logout"
 flat = false
 align = 1
-script = ExtResource( 1 )
-_sections_unfolded = [ "Rect" ]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [connection signal="pressed" from="." to="." method="_on_Logout_Button_pressed"]
 
