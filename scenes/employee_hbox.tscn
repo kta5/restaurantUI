@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/employee_hbox.gd" type="Script" id=1]
 
-[node name="HBoxContainer" type="HBoxContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -25,8 +25,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 58.0
+margin_right = 150.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 150, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -40,6 +41,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="e_ekey_le" type="LineEdit" parent="." index="1"]
 
@@ -47,8 +49,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 62.0
-margin_right = 120.0
+margin_left = 154.0
+margin_right = 212.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -70,9 +72,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 124.0
-margin_right = 182.0
+margin_left = 216.0
+margin_right = 316.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 100, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -86,6 +89,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="e_wage_le" type="LineEdit" parent="." index="3"]
 
@@ -93,8 +97,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 186.0
-margin_right = 244.0
+margin_left = 320.0
+margin_right = 378.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -116,9 +120,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 248.0
-margin_right = 306.0
+margin_left = 382.0
+margin_right = 532.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 150, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -132,6 +137,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="e_password_le" type="LineEdit" parent="." index="5"]
 
@@ -139,9 +145,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 310.0
-margin_right = 368.0
+margin_left = 536.0
+margin_right = 686.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 150, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -155,6 +162,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="Button" type="Button" parent="." index="6"]
 
@@ -162,8 +170,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 372.0
-margin_right = 430.0
+margin_left = 690.0
+margin_right = 748.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -186,8 +194,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 434.0
-margin_right = 489.0
+margin_left = 752.0
+margin_right = 807.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

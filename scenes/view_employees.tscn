@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/view_employees.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buttons/back_to_menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Login.tres" type="DynamicFont" id=3]
+[ext_resource path="res://font_small.tres" type="DynamicFont" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -50,6 +52,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -57,7 +60,7 @@ group = null
 text = "Add Employee"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="Status Options" type="OptionButton" parent="." index="3"]
 
@@ -65,10 +68,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 627.0
-margin_top = 36.0
-margin_right = 705.0
-margin_bottom = 56.0
+margin_left = 591.0
+margin_top = 41.0
+margin_right = 669.0
+margin_bottom = 65.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -76,6 +79,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 action_mode = 0
 enabled_focus_mode = 2
@@ -85,6 +89,7 @@ flat = false
 align = 1
 items = [  ]
 selected = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="Refresh" type="Button" parent="." index="4"]
 
@@ -92,10 +97,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 882.0
+margin_left = 906.0
 margin_top = 39.0
-margin_right = 942.0
-margin_bottom = 59.0
+margin_right = 1016.0
+margin_bottom = 63.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -103,6 +108,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -110,6 +116,7 @@ group = null
 text = "Refresh"
 flat = false
 align = 1
+_sections_unfolded = [ "custom_fonts" ]
 
 [node name="Employee LineEdit" type="LineEdit" parent="." index="5"]
 
@@ -118,9 +125,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 716.0
-margin_top = 34.0
-margin_right = 774.0
-margin_bottom = 58.0
+margin_top = 37.0
+margin_right = 894.0
+margin_bottom = 65.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -128,6 +135,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
 focus_mode = 2
 context_menu_enabled = true
 placeholder_alpha = 0.6
@@ -141,17 +149,18 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 627.0
-margin_top = 10.0
-margin_right = 667.0
-margin_bottom = 24.0
+margin_left = 586.0
+margin_top = 9.0
+margin_right = 698.0
+margin_bottom = 27.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Position"
+custom_fonts/font = ExtResource( 3 )
+text = "Roll"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -162,20 +171,44 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 716.0
-margin_top = 8.0
-margin_right = 779.0
-margin_bottom = 22.0
+margin_left = 746.0
+margin_top = 12.0
+margin_right = 858.0
+margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
 text = "Employee"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Label" type="Label" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 9.0
+margin_top = 96.0
+margin_right = 977.0
+margin_bottom = 114.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 4 )
+text = "Name          Key   Roll     Wage  Username      Password"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
 
 [connection signal="pressed" from="Add Employee Button" to="." method="_on_Add_Employee_Button_pressed"]
 

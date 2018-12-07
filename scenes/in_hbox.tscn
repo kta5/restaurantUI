@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/in_hbox.gd" type="Script" id=1]
+[ext_resource path="res://in_hbox.gd" type="Script" id=1]
 
-[node name="HBoxContainer" type="HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -25,8 +25,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 58.0
+margin_right = 150.0
 margin_bottom = 40.0
+rect_min_size = Vector2( 150, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -40,6 +41,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="LineEdit2" type="LineEdit" parent="." index="1"]
 
@@ -47,8 +49,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 62.0
-margin_right = 120.0
+margin_left = 154.0
+margin_right = 212.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -70,8 +72,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 124.0
-margin_right = 182.0
+margin_left = 216.0
+margin_right = 274.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -93,8 +95,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 186.0
-margin_right = 244.0
+margin_left = 278.0
+margin_right = 336.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -109,6 +111,7 @@ placeholder_alpha = 0.6
 caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Rect" ]
 
 [node name="Button" type="Button" parent="." index="4"]
 
@@ -116,8 +119,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 248.0
-margin_right = 304.0
+margin_left = 340.0
+margin_right = 396.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -140,8 +143,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 308.0
-margin_right = 369.0
+margin_left = 400.0
+margin_right = 461.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
