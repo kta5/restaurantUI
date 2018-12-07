@@ -4,7 +4,7 @@ var root_script = null
 var orders_hbox = preload("res://scenes/in_hbox.tscn")
 var container = null
 var orders_list = Array()
-
+var oos_only = false
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -19,7 +19,10 @@ func refresh():
 	
 	# view all current(incomplete) order, if none please state so
 	var sql = "SELECT * FROM ingredients"
-		
+	
+	if oos_only:
+		sql += " WHERE i_stock = 0"
+	
 	orders_list = Array()
 	print (sql)
 	var result = root_script.db.fetch_array(sql)
@@ -50,4 +53,9 @@ func _on_Add_Menu_Item_pressed():
 
 func _on_Refresh_pressed():
 	refresh()
+	pass # replace with function body
+
+
+func _on_CheckButton_toggled(button_pressed):
+	oos_only = button_pressed
 	pass # replace with function body

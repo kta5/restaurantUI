@@ -133,3 +133,12 @@ func _on_Button_pressed():
 		print( querry)
 		root_script.db.query(str(querry))
 	pass # replace with function body
+
+
+
+
+func _on_Button2_pressed():
+	var querry = "DELETE FROM orders WHERE o_orderkey = "
+	querry += str(original_order_key)
+	root_script.db.query(str(querry))
+	pass # replace with function body
