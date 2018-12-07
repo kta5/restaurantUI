@@ -127,9 +127,17 @@ func _on_Button_pressed():
 		pass
 	
 	
-	querry += "WHERE e_employeekey = " + str(original_order_key)
+	querry += "WHERE e_employeekey = " + str(original_date)
 	querry += " ;"
 	if edited:
 		print( querry)
 		root_script.db.query(str(querry))
+	pass # replace with function body
+
+
+func _on_Button2_pressed():
+	var querry = "DELETE FROM employee WHERE e_employeekey = "
+	querry += str(original_date)
+	root_script.db.query(str(querry))
+	print (querry)
 	pass # replace with function body

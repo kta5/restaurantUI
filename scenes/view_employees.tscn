@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/view_employees.gd" type="Script" id=1]
 [ext_resource path="res://scenes/buttons/back_to_menu.tscn" type="PackedScene" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -81,7 +81,6 @@ action_mode = 0
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "All"
 flat = false
 align = 1
 items = [  ]

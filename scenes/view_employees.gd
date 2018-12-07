@@ -48,7 +48,7 @@ func refresh():
 			filtered = true
 		else:
 			sql += " AND "
-		sql += "e_name LIKE  '%" + e_filter + "%'"
+		sql += "e_name LIKE '" + e_filter + "%'"
 	
 	print (sql)
 	var result = root_script.db.fetch_array(sql)
