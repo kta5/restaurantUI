@@ -12,6 +12,7 @@ config_version=3
 
 config/name="Restaurant UI"
 run/main_scene="res://scenes/Login.tscn"
+boot_splash/image="res://commodore_64/Hells-Kitchen-2-ppcorn-760x500.jpg"
 config/icon="res://icon.png"
 
 [autoload]
