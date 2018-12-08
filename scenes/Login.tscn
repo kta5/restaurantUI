@@ -21,7 +21,7 @@ use_filter = false
 font_data = ExtResource( 3 )
 _sections_unfolded = [ "Font" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
@@ -99,7 +99,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 1 )
-text = "Purgatory"
+text = "Gordon Ramsey's Purgatory"
 align = 1
 valign = 1
 percent_visible = 1.0

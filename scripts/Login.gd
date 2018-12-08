@@ -33,7 +33,7 @@ func _on_Login_Button_pressed():
 		print("incorrect")
 		return;
 	else:
-		print("Loged in as: " + entrybox_username)
+		print("Logged in as: " + entrybox_username)
 		root_script.current_user = entrybox_username
 		for i in result:
 			root_script.user_group = i.e_position
